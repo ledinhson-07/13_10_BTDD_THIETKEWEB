@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Câu 11 - Custom File Input</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .filename {
+            color: #333 !important;
+            word-break: break-all;
+            min-height: 48px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+<body>
+
+<h2 class="text-center">Custom File Input</h2>
+
+<div class="custom-file-wrp">
+    <div class="filename">
+        Ex:sample.jpg
+    </div>
+    <div class="custom-file">
+        <label for="fileupload">Upload</label>
+        <input type="file" id="fileupload">
+    </div>
+</div>
+
+<script src="js/jquery-latest.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#fileupload').on('change', function () {
+            if (this.files && this.files.length > 0) {
+                var file = this.files[0];
+                var fullName = file.name;
+                var lastDot = fullName.lastIndexOf('.');
+                var fileName = (lastDot !== -1) ? fullName.substring(0, lastDot) : fullName;
+                var fileExt = (lastDot !== -1) ? fullName.substring(lastDot + 1) : 'Không có';
+
+                // Hiển thị tên file và phần mở rộng khi người dùng upload file
+                $('.filename').html('Tên file: <strong>' + fileName + '</strong><br>Phần mở rộng: <strong>.' + fileExt + '</strong>');
+            } else {
+                $('.filename').text('Ex:sample.jpg');
+            }
+        });
+    });
+</script>
+</body>
+</html>

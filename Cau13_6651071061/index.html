@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Câu 13 - Show/Hide Password</title>
+    <meta charset="UTF-8">
+    <!--Font Awesome CDN Link-->
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="password-show-card">
+        <input type="password" class="input-control" placeholder="Enter Password">
+        <i class="fa fa-eye password-show"></i>
+    </div>
+
+<script src="js/jquery-latest.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Xử lý khi click vào icon "Mắt" để hiện/ẩn nguyên bản mật khẩu đã nhập
+        $('.password-show').on('click', function () {
+            var input = $(this).siblings('.input-control');
+            if (input.attr('type') === 'password') {
+                // Đổi thành kiểu text để hiện mật khẩu
+                input.attr('type', 'text');
+                $(this).removeClass('fa-eye').addClass('fa-eye-slash');
+            } else {
+                // Đổi lại kiểu password để ẩn mật khẩu
+                input.attr('type', 'password');
+                $(this).removeClass('fa-eye-slash').addClass('fa-eye');
+            }
+        });
+    });
+</script>
+</body>
+</html>
